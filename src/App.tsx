@@ -1,39 +1,38 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
+import { Header } from "@/components/header";
+import { Overview } from "@/components/overview";
 
 const client = generateClient<Schema>();
 
 function App() {
-  const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-
-  useEffect(() => {
-    client.models.Todo.observeQuery().subscribe({
-      next: (data) => setTodos([...data.items]),
-    });
-  }, []);
-
-  function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
-  }
-
   return (
-    <main>
-      <h1>birukie</h1>
-      <button onClick={createTodo}>+ new</button>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
-        ))}
-      </ul>
-      <div>
-        🥳 App successfully hosted. Try creating a new todo.
-        <br />
-        <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
-          Review next step of this tutorial.
-        </a>
+    <div className="flex flex-col min-w-0 h-dvh bg-background">
+      <Header />
+      <div
+        className="flex flex-col min-w-0 gap-6 flex-1 overflow-y-scroll pt-4"
+        // ref={messagesContainerRef}
+      >
+        {/* {messages.length == 0 && <Overview />}
+        {messages.map((message, index) => (
+          <PreviewMessage key={index} message={message} />
+        ))} */}
+        {/* {isLoading && <ThinkingMessage />}
+        <div
+          ref={messagesEndRef}
+          className="shrink-0 min-w-[24px] min-h-[24px]"
+        /> */}
       </div>
-    </main>
+      {/* <div className="flex mx-auto px-4 bg-background pb-4 md:pb-6 gap-2 w-full md:max-w-3xl">
+        <ChatInput
+          question={question}
+          setQuestion={setQuestion}
+          onSubmit={handleSubmit}
+          isLoading={isLoading}
+        />
+      </div> */}
+    </div>
   );
 }
 
