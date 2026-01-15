@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { Header } from "@/components/header";
-import { Overview } from "@/components/overview";
+// import { Overview } from "@/components/overview";
 
-const client = generateClient<Schema>();
+// const client = generateClient<Schema>();
 
 function App() {
   return (
